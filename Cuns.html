@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>THE CUNS AND BOMPORD - Prototype</title>
+<style>
+:root{--blue:#0B3D91;--deep:#082a66;--wine:#5C1024;--black:#111;--pale:#eef3fb;--text:#111;--muted:#4a5568;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{margin:0;padding:0;box-sizing:inherit}
+body{font-family:Georgia,serif;background:#fff;color:var(--text);line-height:1.7}
+h1,h2,h3,nav,.btn,.logo{font-family:'Segoe UI',Arial,sans-serif}
+header{background:var(--blue);color:#fff;position:sticky;top:env(safe-area-inset-top,0px);z-index:10;padding:14px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border-bottom:4px solid var(--wine)}
+.logo{font-size:20px;font-weight:700;cursor:pointer}
+nav button{background:none;border:0;border-bottom:2px solid transparent;color:#dfe7f7;font-size:16px;margin-left:18px;padding:2px 0;cursor:pointer;font-family:inherit}
+nav button:hover,nav button.on{color:#fff;border-bottom-color:#fff}
+.view{display:none}.view.on{display:block}
+.hero,.title{padding:70px 6%;text-align:center;background:linear-gradient(180deg,var(--blue),var(--deep));color:#fff}
+.title{padding:50px 6% 40px}
+h1{font-size:clamp(28px,6vw,48px);line-height:1.15;margin-bottom:14px}
+.hero p,.title p{max-width:640px;margin:auto;color:#dfe7f7;font-size:18px}
+.btn{display:inline-block;margin:26px 6px 0;padding:12px 28px;background:var(--wine);color:#fff;border:2px solid var(--wine);border-radius:6px;font-weight:600;cursor:pointer;font-size:16px}
+.btn.g{background:#fff;color:var(--blue);border-color:#fff}
+.sec{padding:50px 6%;max-width:1000px;margin:auto;text-align:center}
+.sec h2{margin-bottom:20px;color:var(--blue)}
+.ph{width:100%;aspect-ratio:16/8;border-radius:10px;border:4px solid var(--blue);background:repeating-linear-gradient(45deg,#dce6f7,#dce6f7 14px,#eef3fb 14px,#eef3fb 28px);display:flex;align-items:center;justify-content:center;color:var(--blue);font-family:'Segoe UI',Arial,sans-serif}
+.stats{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:30px}
+.stat{background:var(--pale);border-left:4px solid var(--wine);padding:14px 26px;border-radius:8px;text-align:left}
+.stat b{display:block;font-size:28px;color:var(--blue);font-family:'Segoe UI',Arial,sans-serif}
+.stat span{color:var(--muted)}
+.band{background:var(--pale)}
+.search{text-align:center;padding:24px 6% 0}
+.search input{width:100%;max-width:500px;padding:13px 18px;border-radius:6px;border:2px solid var(--blue);font-size:16px}
+#count{color:var(--muted);margin-top:10px;font-family:'Segoe UI',Arial,sans-serif}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px;padding:30px 6% 60px;max-width:1150px;margin:auto}
+.card{background:#fff;border:2px solid var(--blue);border-top:5px solid var(--wine);border-radius:10px;padding:22px;text-align:center}
+.av{width:110px;height:110px;border-radius:50%;border:4px solid var(--wine);background:var(--blue);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:38px;font-weight:700;margin-bottom:10px;font-family:'Segoe UI',Arial,sans-serif}
+.card h3{font-size:18px;margin-bottom:8px;color:var(--blue)}
+.card p{font-size:15px;color:var(--muted)}.card b{color:var(--black)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;padding:30px 6% 60px;max-width:1150px;margin:auto}
+.tile{height:200px;border-radius:8px;border:3px solid var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',Arial,sans-serif;color:#fff;cursor:zoom-in}
+.tile:hover{border-color:var(--wine)}
+#lb{position:fixed;inset:0;background:rgba(8,42,102,.94);display:none;align-items:center;justify-content:center;z-index:50;cursor:zoom-out}
+#lb.on{display:flex}
+#lb div{width:min(90vw,700px);height:min(70vh,460px);border-radius:10px;border:4px solid #fff;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;font-family:'Segoe UI',Arial,sans-serif}
+.contact{background:var(--wine);color:#fff;padding:40px 6%;text-align:center}
+footer{background:var(--black);color:#fff;text-align:center;padding:20px;font-family:'Segoe UI',Arial,sans-serif;font-size:14px;border-top:4px solid var(--blue)}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="go('home')">THE CUNS AND BOMPORD</div>
+<nav><button data-v="home">Home</button><button data-v="classmates">Classmates</button><button data-v="gallery">Gallery</button></nav>
+</header>
+
+<section class="view" id="home">
+<div class="hero">
+<h1>Welcome to THE CUNS AND BOMPORD</h1>
+<p>This is our class website. Meet your classmates and relive the moments we shared together.</p>
+<button class="btn" onclick="go('classmates')">Meet our classmates</button>
+<button class="btn g" onclick="go('gallery')">See the gallery</button>
+</div>
+<div class="band"><div class="sec"><h2>Our class group photo</h2><div class="ph">Your group photo (Cove.jpg) appears here</div>
+<div class="stats"><div class="stat"><b>11</b><span>Classmates</span></div><div class="stat"><b>5</b><span>States represented</span></div></div></div></div>
+<div class="contact"><h2>Stay connected</h2><p>May our friendship keep growing wherever life takes us.</p></div>
+</section>
+
+<section class="view" id="classmates">
+<div class="title"><h1>Our classmates</h1><p>Search by name, nickname or state.</p></div>
+<div class="search"><input type="search" id="q" placeholder="Search a classmate..." aria-label="Search classmates"><p id="count"></p></div>
+<div class="grid" id="grid"></div>
+</section>
+
+<section class="view" id="gallery">
+<div class="title"><h1>Our gallery</h1><p>Our unforgettable moments together. Tap a photo to enlarge it.</p></div>
+<div class="gal" id="gal"></div>
+</section>
+
+<div id="lb"><div></div></div>
+<footer>&copy; 2026 THE CUNS AND BOMPORD. All rights reserved.<br>Built by Sunday Akindoyin</footer>
+
+<script>
+const S=[
+["Adeleye Covenant Oluwadamilare","29th of May","Ogun State",""],
+["Oriola Utman","4th of September","Oyo State","Pablo Riche (001 Emergency num.)"],
+["Akande Nifemi Emmanuel","22nd of March","Oyo State","Theophilus"],
+["Akindoyin Sunday Akinyanju","3rd of April","Osun State",""],
+["Amoo Boluwatife Yetunde","2nd of June","Oyo State","Tiffany"],
+["Oloruntoba Fikayomi Elizabeth","18th of October","Ondo State","otabinumi"],
+["Awofisan Miracal Funmilayo","17th of October","Osun State","Mirabel"],
+["Oluwatayo Precious Sarah","1st of November","Ekiti State",""],
+["Oyeyiola Ololade Raliat","6th of May","Ogun State",""],
+["Oladele Racheal Gift","18th of February","Osun State","Sekube"],
+["Ojo Dolapo Elizabeth","7th of July","","Dolly P"]];
+function go(v){document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id===v));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));scrollTo(0,0)}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.v));
+const q=document.getElementById('q'),grid=document.getElementById('grid');
+function draw(){const t=q.value.trim().toLowerCase();const l=S.filter(x=>x.join(' ').toLowerCase().includes(t));
+grid.innerHTML=l.length?l.map(x=>`<article class="card"><div class="av">${x[0][0]}</div><h3>${x[0]}</h3><p><b>Birthday:</b> ${x[1]}</p><p><b>State:</b> ${x[2]||'Not added yet'}</p><p><b>Nickname:</b> ${x[3]||'None'}</p></article>`).join(''):'<p class="empty">No classmate found. Try another name.</p>';
+document.getElementById('count').textContent=l.length+' of '+S.length+' classmates'}
+q.oninput=draw;draw();
+const C=['#0B3D91','#5C1024','#1d4f9f','#082a66','#2a5db0','#7a1630','#111'];
+document.getElementById('gal').innerHTML=C.map((c,i)=>`<div class="tile" style="background:${c}" data-i="${i}">Photo ${i+1}</div>`).join('');
+const lb=document.getElementById('lb');
+document.querySelectorAll('.tile').forEach(t=>t.onclick=()=>{const d=lb.firstElementChild;d.style.background=t.style.background;d.textContent=t.textContent;lb.classList.add('on')});
+lb.onclick=()=>lb.classList.remove('on');
+document.onkeydown=e=>{if(e.key==='Escape')lb.classList.remove('on')};
+go('home');
+</script>
+</body>
+</html>
